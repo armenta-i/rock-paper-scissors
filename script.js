@@ -70,9 +70,18 @@ function playRound(computerChoice, playerChoice) {
     }
 }
 
-let playerScore = 0;
-let computerScore = 0;
-let computerDecision = getComputerChoice();
-let playerDecision = getPlayerChoice();
-playRound(computerDecision, playerDecision);
+function playGame() {
+    let rounds = 0;
 
+    while(rounds < 5) {
+        let computerDecision = getComputerChoice();
+        let playerDecision = getPlayerChoice();
+        playRound(computerDecision, playerDecision);
+        rounds++;
+    }
+}
+
+let computerScore = 0
+    ,playerScore = 0;
+
+playGame();
