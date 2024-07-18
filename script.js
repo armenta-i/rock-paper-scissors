@@ -78,6 +78,31 @@ function playGame() {
         let playerDecision = getPlayerChoice();
         playRound(computerDecision, playerDecision);
         rounds++;
+        
+        let gameWinner = checkWinner(rounds);
+        if(gameWinner != null){
+            console.log(gameWinner + " won the game!!!");
+            break;
+        }
+    }
+    checkWinner();
+}
+
+function checkWinner(rounds) {
+    if(computerScore == 3){
+        return "Computer";
+    }
+    else if(playerScore == 3){
+        return "Player";
+    }
+    else if(rounds == 5 && computerScore > playerScore){
+        return "Computer";
+    }
+    else if(rounds == 5 && playerScore > computerScore){
+        return "Player";
+    }
+    else {
+        return null;
     }
 }
 
