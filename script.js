@@ -71,8 +71,6 @@ function playRound(computerChoice, playerChoice) {
 }
 
 function playGame() {
-    let rounds = 0;
-
     while(rounds < 5) {
         let computerDecision = getComputerChoice();
         let playerDecision = getPlayerChoice();
@@ -107,6 +105,10 @@ function checkWinner(rounds) {
 }
 
 let computerScore = 0
-    ,playerScore = 0;
+    ,playerScore = 0
+    ,rounds = 0;
+
+let totalRound = document.querySelector(".total-rounds");
+totalRound.textContent = rounds;
 
 playGame();

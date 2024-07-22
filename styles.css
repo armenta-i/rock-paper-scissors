@@ -1,0 +1,65 @@
+body {
+    background-color: #fcf8ed;
+}
+
+.website-header {
+    text-align: center;
+    font-size: 62px;
+    margin: 20px auto;
+    margin-bottom: 60px;
+}
+
+.player-choices {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: auto;
+    gap: 10px;
+}
+
+.game-buttons {
+    display: flex;
+    gap: 40px;
+}
+
+.choice-button {
+    cursor: pointer;
+    font-size: 30px;
+    border: 2px solid #616467;
+    box-shadow: inset 0 0 0 2px #616467;
+    color: black;
+    padding: 1rem 3rem;
+    border-radius: 100px;
+    text-transform: uppercase;
+    background-color: transparent;
+    transition: background-color 200ms, color 200ms;
+    flex-grow: 0;
+}
+
+.choice-button:hover {
+    background-color: #616467;
+    color: white;
+}
+
+.game-info {
+    display: flex;
+    width: 75%;
+    justify-content: space-between;
+    padding-left:300px;
+    padding-right: 300px;
+}
+
+.all-scores{
+    display: flex;
+    gap: 40px;
+    justify-self: flex-end;
+    list-style: none;
+}
+
+.all-scores > li {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
