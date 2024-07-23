@@ -1,3 +1,42 @@
+let computerScore = 0
+    ,playerScore = 0
+    ,rounds = 0;
+
+// Getting html elements to put the information of the game on the document
+let totalRound = document.querySelector("#totalRounds");
+totalRound.textContent += " "  + rounds;
+let computerPoints = document.querySelector("#computerNumberPoints");
+// Messing with this counter
+let playerPoints = document.querySelector("#playerNumberPoints");
+computerPoints.textContent += " " + computerScore;
+playerPoints.textContent += " " + Number(playerScore);
+let gameButtons = document.querySelector(".game-buttons"); 
+
+function main() {
+    gameButtons.addEventListener('click', (e) => {
+        let playerChoice = "";
+        let target = e.target;
+
+        // Getting user input to play round
+        switch(target.id){
+            case 'rock-button':
+                playerChoice = "rock";
+                break;
+            case 'paper-button':
+                playerChoice = "paper";
+                break;
+            case 'scissors-button':
+                playerChoice = "scissors";
+                break;
+        }
+        // let gameRoundScore = compareChoice(getComputerChoice(), playerChoice);
+            playRound(getComputerChoice(), playerChoice);
+            rounds++;
+            updateScores();
+        
+    })
+}
+
 function getComputerChoice() {
     let randomIndex = Math.floor(Math.random() * 3);
     let computerChoice = "";
@@ -13,12 +52,6 @@ function getComputerChoice() {
             break;
     }
     return computerChoice;
-}
-
-function getPlayerChoice() {
-    let userInput = prompt("Choose one of the options to play against you opponent!\n Rock Paper Scissors\n 0 to exit");
-    userInput = userInput.toLowerCase();
-    return userInput;
 }
 
 function compareChoice(computerChoice, playerChoice){
@@ -54,37 +87,39 @@ function compareChoice(computerChoice, playerChoice){
 
 function playRound(computerChoice, playerChoice) {
     let winner = compareChoice(computerChoice, playerChoice);
+    let announceWinner = document.querySelector(".round-winner");
 
     switch(winner){
         case(0):
             console.log("Player and Computer had same choice, no winner");
+            announceWinner.textContent = "";
+            announceWinner.textContent =  "Player and Computer had same choice, no winner";
             break;
         case(1):
             console.log("You lose! " + computerChoice + " beats " + playerChoice);
             computerScore++;
+            announceWinner.textContent = "";
+            announceWinner.textContent =  "You lose! " + computerChoice + " beats " + playerChoice;
             break;
         case(2):
             console.log("You win! " + playerChoice + " beats " + computerChoice);
             playerScore++;
+            console.log("player score: " + +playerScore)
+            announceWinner.textContent = "";
+            announceWinner.textContent =  "You win! " + playerChoice + " beats " + computerChoice;
             break;
     }
 }
 
-function playGame() {
-    while(rounds < 5) {
-        let computerDecision = getComputerChoice();
-        let playerDecision = getPlayerChoice();
-        playRound(computerDecision, playerDecision);
-        rounds++;
-        
-        let gameWinner = checkWinner(rounds);
-        if(gameWinner != null){
-            console.log(gameWinner + " won the game!!!");
-            break;
-        }
-    }
-    checkWinner();
+function updateScores() {
+    let computerScoreUpdate = document.querySelector("#computerNumberPoints")
+    let playerScoreUpdate = document.querySelector("#playerNumberPoints");
+    let roundTotalUpdate = document.querySelector("#totalRounds");
+    computerScoreUpdate.textContent = computerScore;
+    playerScoreUpdate.textContent = playerScore;
+    roundTotalUpdate.textContent = rounds;
 }
+
 
 function checkWinner(rounds) {
     if(computerScore == 3){
@@ -104,11 +139,19 @@ function checkWinner(rounds) {
     }
 }
 
-let computerScore = 0
-    ,playerScore = 0
-    ,rounds = 0;
-
-let totalRound = document.querySelector(".total-rounds");
-totalRound.textContent = rounds;
-
-playGame();
+// function playGame() {
+//     while(rounds < 5) {
+//         let computerDecision = getComputerChoice();
+//         let playerDecision = getPlayerChoice();
+//         playRound(computerDecision, playerDecision);
+//         rounds++;
+        
+//         let gameWinner = checkWinner(rounds);
+//         if(gameWinner != null){
+//             console.log(gameWinner + " won the game!!!");
+//             break;
+//         }
+//     }
+//     checkWinner();
+// }
+main();

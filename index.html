@@ -6,7 +6,7 @@
     <title>Rock Paper Scissors!</title>
     <link rel="stylesheet" href="./styles.css">
     <link rel="icon" href="./img/icon.png">
-    <!-- <script src="./script.js" defer></script> -->
+    <script src="./script.js" defer></script>
 </head>
 <body>
     <script>
@@ -16,22 +16,27 @@
 
     <div class="player-choices">
         <div class="game-info">
-            <h2>Round:</h2>
+            <h2 id="current-round">Round: <span id="totalRounds"></span></h2>
             <ul class="all-scores">
-                <li>Computer: </li>
-                <li>Player:</li>
+                <li id="computerPoints">Computer: <span id="computerNumberPoints"></span></li>
+                <li id="playerPoints">Player: <span id="playerNumberPoints"></span></li>
             </ul>
         </div>
+        <h2>Select One:</h2>
         <div class="game-buttons">
-            <button class="choice-button">
+            <button class="choice-button" id="rock-button">
                 Rock
             </button>
-            <button class="choice-button">
+            <button class="choice-button" id="paper-button">
                 Paper
             </button>
-            <button class="choice-button">
+            <button class="choice-button" id="scissors-button">
                 Scissors
             </button>
+        </div>
+
+        <div class="round-winner">
+
         </div>
     </div>
 

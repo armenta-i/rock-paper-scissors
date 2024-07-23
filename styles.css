@@ -26,7 +26,6 @@ body {
 
 .choice-button {
     cursor: pointer;
-    font-size: 30px;
     border: 2px solid #616467;
     box-shadow: inset 0 0 0 2px #616467;
     color: black;
@@ -35,7 +34,11 @@ body {
     text-transform: uppercase;
     background-color: transparent;
     transition: background-color 200ms, color 200ms;
-    flex-grow: 0;
+    flex-shrink: 1;
+    width: 15vw;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
 }
 
 .choice-button:hover {
@@ -56,6 +59,8 @@ body {
     gap: 40px;
     justify-self: flex-end;
     list-style: none;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .all-scores > li {
@@ -63,3 +68,9 @@ body {
     font-weight: bold;
 }
 
+.round-winner {
+    justify-content: center;
+    align-items: center;
+    margin: 2em;
+    font-size: 2em;
+}
