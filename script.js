@@ -1,6 +1,7 @@
 let computerScore = 0
     ,playerScore = 0
-    ,rounds = 0;
+    ,rounds = 0
+    ,winner;
 
 // Getting html elements to put the information of the game on the document
 let totalRound = document.querySelector("#totalRounds");
@@ -29,11 +30,23 @@ function main() {
                 playerChoice = "scissors";
                 break;
         }
-        // let gameRoundScore = compareChoice(getComputerChoice(), playerChoice);
             playRound(getComputerChoice(), playerChoice);
             rounds++;
             updateScores();
-        
+
+            // This works fine, but assignment ask for game to end when someone reaches 5 points instead of 5 rounds. Can be easily changed, idk if its better.
+            if(playerScore === 5 || computerScore === 5){
+                let gameWinner = document.querySelector("#game-winner-announcement");
+                if(playerScore === 5){
+                    gameWinner.textContent += "Player won the game!!";
+                }
+                if(computerScore === 5){
+                    gameWinner.textContent += "Computer won the game!!";
+                }
+                let endGamePopUp = document.querySelector(".winner-announcement");
+                endGamePopUp.removeAttribute("hidden");
+                endGamePopUp.setAttribute("style", "visibility: visible");
+            }
     })
 }
 
@@ -104,7 +117,6 @@ function playRound(computerChoice, playerChoice) {
         case(2):
             console.log("You win! " + playerChoice + " beats " + computerChoice);
             playerScore++;
-            console.log("player score: " + +playerScore)
             announceWinner.textContent = "";
             announceWinner.textContent =  "You win! " + playerChoice + " beats " + computerChoice;
             break;
@@ -121,7 +133,7 @@ function updateScores() {
 }
 
 
-function checkWinner(rounds) {
+function checkWinner() {
     if(computerScore == 3){
         return "Computer";
     }
@@ -139,19 +151,11 @@ function checkWinner(rounds) {
     }
 }
 
-// function playGame() {
-//     while(rounds < 5) {
-//         let computerDecision = getComputerChoice();
-//         let playerDecision = getPlayerChoice();
-//         playRound(computerDecision, playerDecision);
-//         rounds++;
-        
-//         let gameWinner = checkWinner(rounds);
-//         if(gameWinner != null){
-//             console.log(gameWinner + " won the game!!!");
-//             break;
-//         }
-//     }
-//     checkWinner();
-// }
+// This is used to reset the game at any moment, also used for the (missing) pop up container when someone wins the game.
+let resetButton = document.querySelector("#reset-button");
+resetButton.addEventListener('click', function(e) {
+    e.preventDefault();
+    location.reload();
+})
+
 main();
